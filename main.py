@@ -4,7 +4,6 @@ import os.path
 import requests
 import json
 import dotenv
-from pprint import pprint
 import folium
 from flask import Flask
 
@@ -61,7 +60,6 @@ def map(point, nearest_five):
         lat = cafe["latitude"]
         lon = cafe["longitude"]
         title = cafe["title"]
-        print(lat, lon, title)
         folium.Marker([lat, lon], tooltip=title).add_to(m)
     m.save("index.html")
 
@@ -82,7 +80,6 @@ def fetch_coordinates(apikey, address):
         return None
     most_relevant = found_places[0]
     lon, lat = most_relevant["GeoObject"]["Point"]["pos"].split(" ")
-    print("Ваши координаты: ({}, {})".format(lon, lat))
     return lat, lon
 
 
